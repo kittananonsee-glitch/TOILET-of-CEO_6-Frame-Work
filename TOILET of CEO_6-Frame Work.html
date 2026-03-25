@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="th" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOILET of CEO 6-Framework</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;family=Kanit:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    .dimension-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dimension-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+    .letter-badge {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+      50% { box-shadow: 0 0 40px rgba(255,255,255,0.6); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .float-animation {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .slide-up {
+      animation: slide-up 0.6s ease-out forwards;
+    }
+    .toilet-letter {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .toilet-letter:hover {
+      transform: scale(1.2) rotate(-5deg);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+    }
+    .detail-panel {
+      transition: all 0.4s ease;
+    }
+    .progress-ring {
+      transition: stroke-dashoffset 0.5s ease;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto" style="font-family: 'Prompt', sans-serif;">
+  <div id="app-wrapper" class="min-h-full w-full">
+   <!-- Hero Section -->
+   <header class="relative overflow-hidden py-12 px-6" id="hero-section">
+    <div class="absolute inset-0 opacity-10">
+     <div class="absolute top-10 left-10 w-32 h-32 rounded-full bg-white float-animation"></div>
+     <div class="absolute bottom-20 right-20 w-24 h-24 rounded-full bg-white float-animation" style="animation-delay: 1s;"></div>
+     <div class="absolute top-1/2 left-1/4 w-16 h-16 rounded-full bg-white float-animation" style="animation-delay: 2s;"></div>
+    </div>
+    <div class="max-w-6xl mx-auto relative z-10">
+     <!-- TOILET Letters -->
+     <div class="flex justify-center gap-3 md:gap-6 mb-6 flex-wrap">
+      <span class="toilet-letter text-5xl md:text-7xl font-bold text-white drop-shadow-lg" data-letter="T">T</span> <span class="toilet-letter text-5xl md:text-7xl font-bold text-white drop-shadow-lg" data-letter="O">O</span> <span class="toilet-letter text-5xl md:text-7xl font-bold text-white drop-shadow-lg" data-letter="I">I</span> <span class="toilet-letter text-5xl md:text-7xl font-bold text-white drop-shadow-lg" data-letter="L">L</span> <span class="toilet-letter text-5xl md:text-7xl font-bold text-white drop-shadow-lg" data-letter="E">E</span> <span class="toilet-letter text-5xl md:text-7xl font-bold text-white drop-shadow-lg" data-letter="T2">T</span>
+     </div>
+     <h1 id="main-title" class="text-3xl md:text-5xl font-bold text-white text-center mb-4 drop-shadow-lg" style="font-family: 'Kanit', sans-serif;">of CEO</h1>
+     <p id="subtitle" class="text-lg md:text-xl text-white/90 text-center max-w-3xl mx-auto">Integrated Building Management System</p><!-- Letter Meanings -->
+     <div class="mt-8 glass-card rounded-2xl p-6 max-w-4xl mx-auto">
+      <h3 class="text-center font-semibold mb-4" id="letter-meaning-title">ความหมายของและนิยาม(Meaning and Definition)</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+       <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" id="badge-t1">T</span> <span id="meaning-t1">Technology / Trust </span>
+       </div>
+       <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" id="badge-o">O</span> <span id="meaning-o">Ownership / Operational</span>
+       </div>
+       <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" id="badge-i">I</span> <span id="meaning-i">Integrity / Innovation</span>
+       </div>
+       <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" id="badge-l">L</span> <span id="meaning-l">Leadership / Lifecycle</span>
+       </div>
+       <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" id="badge-e">E</span> <span id="meaning-e">Environmental / Empathy</span>
+       </div>
+       <div class="flex items-center gap-2">
+        <span class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm" id="badge-t2">T</span> <span id="meaning-t2">Transformation / Training</span>
+       </div>
+      </div>
+     </div>
+    </div>
+   </header><!-- Navigation Tabs -->
+   <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-md">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="flex overflow-x-auto gap-1 py-3" id="nav-tabs">
+      <button onclick="showDimension(-2)" class="nav-tab px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all" data-tab="-2"> 📊 Thinking Levels </button> <button onclick="showDimension(0)" class="nav-tab px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all" data-tab="0"> 🏢 Smart Building </button> <button onclick="showDimension(1)" class="nav-tab px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all" data-tab="1"> 🧠 Behavioral </button> <button onclick="showDimension(2)" class="nav-tab px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all" data-tab="2"> ⚙️ Process </button> <button onclick="showDimension(3)" class="nav-tab px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all" data-tab="3"> 🎓 Academy </button> <button onclick="showDimension(4)" class="nav-tab px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all" data-tab="4"> 💼 One Person </button> <button onclick="showDimension(-1)" class="nav-tab px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all" data-tab="-1"> 📈 สรุปภาพรวม </button>
+     </div>
+    </div>
+   </nav><!-- Main Content -->
+   <main class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Dimension Cards Grid -->
+    <div id="dimension-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+    </div><!-- Detail Panel -->
+    <div id="detail-panel" class="hidden mt-8">
+    </div><!-- Summary Section -->
+    <div id="summary-section" class="hidden">
+     <div class="glass-card rounded-3xl p-8 shadow-xl">
+      <h2 class="text-2xl font-bold text-center mb-8" style="font-family: 'Kanit', sans-serif;" id="summary-title">FINAL TOILET Framework (Significant)</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="summary-grid">
+      </div><!-- Integration Diagram -->
+      <div class="mt-12 text-center">
+       <h3 class="text-xl font-semibold mb-6" id="integration-title">การเชื่อมโยงระบบบริหารจัดการทั้ง 6 มิติ</h3>
+       <div class="relative inline-block">
+        <svg viewbox="0 0 400 400" class="w-full max-w-md mx-auto">
+         <!-- Center Circle --> <circle cx="200" cy="200" r="60" fill="url(#centerGradient)" class="drop-shadow-lg" /> <text x="200" y="195" text-anchor="middle" fill="white" font-size="14" font-weight="bold">
+          TOILET
+         </text> <text x="200" y="215" text-anchor="middle" fill="white" font-size="10">
+          of CEO
+         </text> <!-- Outer Circles --> <g id="diagram-circles">
+          <circle cx="200" cy="80" r="45" fill="#3B82F6" opacity="0.9" />
+          <text x="200" y="75" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
+           Smart
+          </text>
+          <text x="200" y="90" text-anchor="middle" fill="white" font-size="10">
+           Building
+          </text>
+          <circle cx="315" cy="140" r="45" fill="#8B5CF6" opacity="0.9" />
+          <text x="315" y="135" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
+           Behavioral
+          </text>
+          <text x="315" y="150" text-anchor="middle" fill="white" font-size="10">
+           Framework
+          </text>
+          <circle cx="315" cy="260" r="45" fill="#EC4899" opacity="0.9" />
+          <text x="315" y="255" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
+           Process
+          </text>
+          <text x="315" y="270" text-anchor="middle" fill="white" font-size="10">
+           Development
+          </text>
+          <circle cx="200" cy="320" r="45" fill="#F59E0B" opacity="0.9" />
+          <text x="200" y="315" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
+           Academy
+          </text>
+          <text x="200" y="330" text-anchor="middle" fill="white" font-size="10">
+           Challenge
+          </text>
+          <circle cx="85" cy="260" r="45" fill="#10B981" opacity="0.9" />
+          <text x="85" y="255" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
+           One Person
+          </text>
+          <text x="85" y="270" text-anchor="middle" fill="white" font-size="10">
+           Business
+          </text>
+          <circle cx="85" cy="140" r="45" fill="#6366F1" opacity="0.9" />
+          <text x="85" y="140" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
+           Integration
+          </text>
+         </g> <!-- Connection Lines --> <g stroke="#94a3b8" stroke-width="2" stroke-dasharray="5,5" opacity="0.5">
+          <line x1="200" y1="125" x2="200" y2="140" />
+          <line x1="270" y1="155" x2="250" y2="170" />
+          <line x1="270" y1="245" x2="250" y2="230" />
+          <line x1="200" y1="275" x2="200" y2="260" />
+          <line x1="130" y1="245" x2="150" y2="230" />
+          <line x1="130" y1="155" x2="150" y2="170" />
+         </g> <defs>
+          <lineargradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+           <stop offset="0%" style="stop-color:#667eea" />
+           <stop offset="100%" style="stop-color:#764ba2" />
+          </lineargradient>
+         </defs>
+        </svg>
+       </div>
+      </div>
+     </div>
+    </div>
+   </main><!-- Footer -->
+   <footer class="py-8 px-4 mt-8" id="footer-section">
+    <div class="max-w-6xl mx-auto text-center">
+     <p class="text-white/80" id="footer-text">© TKO_Kiitanan ONSEE | TOILET of CEO : Quiet Framework</p>
+     <p class="text-white/60 text-sm mt-2" id="footer-subtitle">iMATOMs(Integrated Muti-Alternative Technology Operation Management and Safety)</p>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // Configuration
+    const defaultConfig = {
+      primary_color: '#1e1b4b',
+      secondary_color: '#ffffff',
+      text_color: '#1f2937',
+      accent_color: '#6366f1',
+      highlight_color: '#8b5cf6',
+      font_family: 'Prompt',
+      font_size: 16,
+      main_title: 'of CEO',
+      subtitle: '"A space where innovation ideas are born, is in the mostly private moments"'
+    };
+
+    // Dimension Data
+    const dimensions = [
+      {
+        id: 0,
+        title: 'iMATOMs SMART BUILDING',
+        subtitle: 'วิศวกรรมอาคาร',
+        icon: '🏢',
+        goal: 'สร้างระบบวิศวกรรมที่เชื่อถือได้และยั่งยืน',
+        color: '#3B82F6',
+        items: [
+          { letter: 'T', title: 'Technology Integration', desc: 'ใช้ระบบ Reliability System เชื่อมต่อกับ iMATOMs เพื่อตรวจวัดสถานะเครื่องจักรแบบ Real-time' },
+          { letter: 'O', title: 'Operational Excellence', desc: 'ประวัติการบำรุงรักษาและการเดินเครื่องต้องแม่นยำ' },
+          { letter: 'I', title: 'Integrity & Safety', desc: 'มาตรฐาน FMS ที่เน้นความปลอดภัยและจริยธรรมวิชาชีพ' },
+          { letter: 'L', title: 'Lifecycle Costing', desc: 'บริหาร Cost Efficiency ทั้งพลังงานและการซ่อมบำรุงตลอดอายุการใช้งาน' },
+          { letter: 'E', title: 'Environmental Impact', desc: 'มุ่งสู่ ESG & Decarbonization ลดการปล่อยก๊าซเรือนกระจก' },
+          { letter: 'T', title: 'Training & Skill Up', desc: 'โปรแกรม Skill Up Level เพื่อให้ทีมงานก้าวทัน Smart Building' }
+        ]
+      },
+      {
+        id: 1,
+        title: 'BEHAVIORAL FRAMEWORK',
+        subtitle: 'พฤติกรรมและนิสัย',
+        icon: '🧠',
+        goal: 'ปรับ Mindset และนิสัยสู่ความเป็นมืออาชีพ',
+        color: '#8B5CF6',
+        items: [
+          { letter: 'T', title: 'Trust through "Start with WHY"', desc: 'สร้างความไว้วางใจด้วยการเข้าใจเป้าหมายที่แท้จริงของการกระทำ' },
+          { letter: 'O', title: 'Ownership in Problem Solving', desc: 'ใช้แนวคิด Ownership & Possibility ในการแก้ปัญหา ไม่ปฏิเสธงาน' },
+          { letter: 'I', title: 'Integrity in Habits', desc: 'ใช้ Power of Habit (Cue-Routine-Reward) สร้างระเบียบวินัยที่ยั่งยืน' },
+          { letter: 'L', title: 'Leadership in Time Management', desc: 'บริหารเวลาด้วยหลัก สำคัญ/เร่งด่วน เพื่อสร้างภาวะผู้นำในตนเอง' },
+          { letter: 'E', title: 'Empathy & Communication', desc: 'ใช้หลัก LATTE (Listen, Acknowledge, Take action, Thank, Explain) ในการบริการ' },
+          { letter: 'T', title: 'Total Balance (8 Pillars)', desc: 'พัฒนาทักษะและชีวิตในทุกมิติ (สุขภาพ/งาน/เงิน) เพื่อความสุขที่ยั่งยืน' }
+        ]
+      },
+      {
+        id: 2,
+        title: 'PROCESS DEVELOPMENT',
+        subtitle: 'กระบวนการทำงาน',
+        icon: '⚙️',
+        goal: 'เพิ่มประสิทธิภาพด้วยระบบดิจิทัลและ LEAN',
+        color: '#EC4899',
+        items: [
+          { letter: 'T', title: 'Tech-Driven Process', desc: 'ใช้ IoT, Dashboard, Appsheet เพื่อลดกระบวนการที่ซ้ำซ้อน' },
+          { letter: 'O', title: 'Optimized Workflow (LEAN)', desc: 'ใช้หลัก Six Sigma (DMAIC) เพื่อกำจัดความสูญเปล่าในงานวิศวกรรม' },
+          { letter: 'I', title: 'Individual OKRs', desc: 'ตั้งเป้าหมายด้วย SMART KPIs & OKRs ที่วัดผลได้ชัดเจนและท้าทาย' },
+          { letter: 'L', title: 'Logical Thinking', desc: 'ใช้ Conclusion & Framework Thinking ในการออกแบบกระบวนการทำงาน' },
+          { letter: 'E', title: 'Efficiency Analytics', desc: 'ใช้ AI Analytics วิเคราะห์ข้อมูลเพื่อปรับปรุงกระบวนการอย่างต่อเนื่อง' },
+          { letter: 'T', title: 'Transparent Data', desc: 'ข้อมูลทั้งหมดต้องโปร่งใส ตรวจสอบได้ผ่าน WebApps' }
+        ]
+      },
+      {
+        id: 3,
+        title: 'ACADEMY CHALLENGE SKILL',
+        subtitle: 'ฝึกอบรม',
+        icon: '🎓',
+        goal: 'สร้างศูนย์เรียนรู้เพื่อยกระดับทักษะแบบก้าวกระโดด',
+        color: '#F59E0B',
+        items: [
+          { letter: 'T', title: 'Training Modules', desc: 'ออกแบบคอร์สเรียนที่เน้น Hard Skill (วิศวกรรม) และ Soft Skill (บริหาร)' },
+          { letter: 'O', title: 'On-the-job Challenge', desc: 'เปลี่ยนการเรียนทฤษฎีเป็นการแก้ปัญหาหน้างานจริง (Project-based)' },
+          { letter: 'I', title: 'Interactive Learning', desc: 'ใช้สื่อดิจิทัลและแอปพลิเคชันในการทดสอบทักษะ' },
+          { letter: 'L', title: 'Lifelong Growth', desc: 'สร้างวัฒนธรรมการเรียนรู้ที่ไม่สิ้นสุด' },
+          { letter: 'E', title: 'Evaluation & Feedback', desc: 'ระบบการประเมินผลที่ยุติธรรมและส่งเสริมการพัฒนา' },
+          { letter: 'T', title: 'Talent Transformation', desc: 'ปั้นดาวเด่นสู่การเป็นผู้บริหารในอนาคต' }
+        ]
+      },
+      {
+        id: 4,
+        title: 'ONE PERSON BUSINESS',
+        subtitle: 'สร้างมูลค่า',
+        icon: '💼',
+        goal: 'พนักงานทุกคนคือหุ้นส่วนที่สร้างรายได้และมูลค่า',
+        color: '#10B981',
+        items: [
+          { letter: 'T', title: 'Thinking as a Business Owner', desc: 'ปลูกฝังให้พนักงานมองเห็นความคุ้มค่าและกำไรในทุกกิจกรรมที่ทำ' },
+          { letter: 'O', title: 'Opportunity Seeking', desc: 'ฝึกให้มองหาโอกาสในการลดค่าใช้จ่ายหรือเพิ่มรายได้ให้องค์กร' },
+          { letter: 'I', title: 'Innovation for Value', desc: 'สร้างนวัตกรรมเล็กๆ ที่ลดต้นทุนหรือเพิ่มมูลค่าบริการ' },
+          { letter: 'L', title: 'Leveraging Assets', desc: 'ใช้ทรัพยากรที่มีอยู่ให้เกิดประโยชน์สูงสุด' },
+          { letter: 'E', title: 'Entrepreneurial Spirit', desc: 'สนับสนุนความเป็นผู้ประกอบการภายในองค์กร (Intrapreneur)' },
+          { letter: 'T', title: 'Total Value Creation', desc: 'วัดผลพนักงานที่ "คุณค่าที่สร้าง" ไม่ใช่แค่ "ชั่วโมงที่ทำงาน"' }
+        ]
+      }
+    ];
+
+    const thinkingLevels = [
+      {
+        id: 0,
+        level: 'CEO / Owner',
+        icon: '👑',
+        color: '#DC2626',
+        focus: 'Strategic Vision & Financial Growth',
+        objectives: [
+          { 
+            perspective: 'Finance', 
+            kpi: 'Profitability, ROI, Market Share',
+            toilet: 'T: Set strategic technology roadmap | O: Drive organizational excellence | I: Ensure ethical governance | L: Build sustainable business model | E: Lead ESG initiatives | T: Champion transformation'
+          },
+          { 
+            perspective: 'Internal Process', 
+            kpi: 'Operational Efficiency, Risk Management',
+            toilet: 'T: Deploy enterprise systems | O: Optimize core processes | I: Set compliance standards | L: Manage organizational assets | E: Foster innovation culture | T: Build high-performance teams'
+          },
+          { 
+            perspective: 'Customer', 
+            kpi: 'Market Position, Customer Satisfaction',
+            toilet: 'T: Leverage technology for advantage | O: Ensure service excellence | I: Maintain brand integrity | L: Develop customer relationships | E: Build customer loyalty | T: Create customer value propositions'
+          },
+          { 
+            perspective: 'Learning & Growth', 
+            kpi: 'Talent Development, Innovation Rate',
+            toilet: 'T: Invest in training infrastructure | O: Build ownership culture | I: Promote excellence | L: Develop future leaders | E: Foster learning ecosystem | T: Attract top talent'
+          }
+        ]
+      },
+      {
+        id: 1,
+        level: 'Managing Director',
+        icon: '🎖️',
+        color: '#EA580C',
+        focus: 'Strategic Execution & Portfolio Management',
+        objectives: [
+          { 
+            perspective: 'Finance', 
+            kpi: 'Budget Performance, Cost Control',
+            toilet: 'T: Implement financial systems | O: Manage portfolio performance | I: Control cost efficiency | L: Lifecycle cost management | E: Monitor sustainability impact | T: Report financial performance'
+          },
+          { 
+            perspective: 'Internal Process', 
+            kpi: 'Process Improvement, Quality Metrics',
+            toilet: 'T: Implement improvement tools (DMAIC) | O: Eliminate process waste | I: Set quality standards | L: Optimize workflows | E: Analyze performance data | T: Share best practices'
+          },
+          { 
+            perspective: 'Customer', 
+            kpi: 'Service Quality, Customer Retention',
+            toilet: 'T: Deploy customer systems | O: Drive service excellence | I: Uphold service standards | L: Manage customer relationships | E: Improve customer communication | T: Build customer champions'
+          },
+          { 
+            perspective: 'Learning & Growth', 
+            kpi: 'Manager Development, Skill Gaps',
+            toilet: 'T: Design capability programs | O: Develop management skills | I: Build professional integrity | L: Develop leadership skills | E: Foster team engagement | T: Build management bench strength'
+          }
+        ]
+      },
+      {
+        id: 2,
+        level: 'Director',
+        icon: '📋',
+        color: '#F59E0B',
+        focus: 'Department Leadership & Tactical Execution',
+        objectives: [
+          { 
+            perspective: 'Finance', 
+            kpi: 'Department Budget, Cost Per Unit',
+            toilet: 'T: Track financial metrics | O: Control departmental costs | I: Ensure financial accuracy | L: Optimize resource utilization | E: Monitor energy/environmental impact | T: Prepare financial reports'
+          },
+          { 
+            perspective: 'Internal Process', 
+            kpi: 'Process Compliance, Efficiency Rate',
+            toilet: 'T: Deploy process dashboards | O: Execute improvement projects | I: Maintain compliance standards | L: Streamline workflows | E: Track efficiency metrics | T: Document best practices'
+          },
+          { 
+            perspective: 'Customer', 
+            kpi: 'Response Time, Satisfaction Score',
+            toilet: 'T: Implement feedback systems | O: Ensure responsive service | I: Maintain service standards | L: Manage customer expectations | E: Apply LATTE principles | T: Train customer service teams'
+          },
+          { 
+            perspective: 'Learning & Growth', 
+            kpi: 'Team Skills, Training Completion',
+            toilet: 'T: Coordinate training programs | O: Support employee growth | I: Build professional standards | L: Develop supervisory skills | E: Create learning opportunities | T: Mentor emerging leaders'
+          }
+        ]
+      },
+      {
+        id: 3,
+        level: 'Manager / HOD',
+        icon: '📊',
+        color: '#10B981',
+        focus: 'Team Management & Daily Operations',
+        objectives: [
+          { 
+            perspective: 'Finance', 
+            kpi: 'Team Budget Utilization, Waste Reduction',
+            toilet: 'T: Monitor spending data | O: Reduce operational waste | I: Report budget accurately | L: Manage team resources | E: Track carbon footprint | T: Support cost initiatives'
+          },
+          { 
+            perspective: 'Internal Process', 
+            kpi: 'Task Completion Rate, Quality Score',
+            toilet: 'T: Use work management tools | O: Ensure task completion | I: Maintain work standards | L: Schedule work efficiently | E: Track performance data | T: Document procedures'
+          },
+          { 
+            perspective: 'Customer', 
+            kpi: 'Service Delivery, Customer Feedback',
+            toilet: 'T: Use communication tools | O: Deliver quality service | I: Follow service protocols | L: Manage customer relationships | E: Listen and respond to feedback | T: Build customer relationships'
+          },
+          { 
+            perspective: 'Learning & Growth', 
+            kpi: 'Employee Engagement, Skill Improvement',
+            toilet: 'T: Assign training tasks | O: Support team development | I: Model professional behavior | L: Coach on time management | E: Provide feedback & recognition | T: Develop subordinate skills'
+          }
+        ]
+      },
+      {
+        id: 4,
+        level: 'Supervisor',
+        icon: '👔',
+        color: '#06B6D4',
+        focus: 'Work Execution & Team Coordination',
+        objectives: [
+          { 
+            perspective: 'Finance', 
+            kpi: 'Resource Usage, Cost per Activity',
+            toilet: 'T: Record usage data | O: Use resources efficiently | I: Report accurately | L: Plan daily resources | E: Minimize waste | T: Support cost reduction'
+          },
+          { 
+            perspective: 'Internal Process', 
+            kpi: 'On-Time Completion, Rework Rate',
+            toilet: 'T: Use tracking systems | O: Complete tasks on schedule | I: Maintain quality standards | L: Organize work sequence | E: Collect performance feedback | T: Follow procedures consistently'
+          },
+          { 
+            perspective: 'Customer', 
+            kpi: 'Service Response, Customer Issues Resolved',
+            toilet: 'T: Use support systems | O: Solve problems promptly | I: Follow protocols | L: Prioritize requests | E: Communicate clearly with customers | T: Build customer relationships'
+          },
+          { 
+            perspective: 'Learning & Growth', 
+            kpi: 'Skill Mastery, On-The-Job Training',
+            toilet: 'T: Learn new tools & systems | O: Take ownership of growth | I: Follow professional standards | L: Manage work-life balance | E: Seek feedback from team | T: Help train new staff'
+          }
+        ]
+      },
+      {
+        id: 5,
+        level: 'Staff / Employee',
+        icon: '👨‍💼',
+        color: '#6366F1',
+        focus: 'Individual Contribution & Skill Development',
+        objectives: [
+          { 
+            perspective: 'Finance', 
+            kpi: 'Cost of My Work, Value Created',
+            toilet: 'T: Use systems correctly | O: Reduce waste in my tasks | I: Record work accurately | L: Optimize my efficiency | E: Consider environmental impact | T: Support cost initiatives'
+          },
+          { 
+            perspective: 'Internal Process', 
+            kpi: 'Task Quality, Speed of Execution',
+            toilet: 'T: Master assigned systems | O: Complete work properly | I: Follow standards every time | L: Work efficiently | E: Track own performance | T: Follow procedures precisely'
+          },
+          { 
+            perspective: 'Customer', 
+            kpi: 'Service Quality, Customer Satisfaction',
+            toilet: 'T: Use customer tools correctly | O: Solve customer issues | I: Maintain service standards | L: Prioritize customer needs | E: Listen and respond to customers | T: Build customer relationships'
+          },
+          { 
+            perspective: 'Learning & Growth', 
+            kpi: 'Skill Development, Certificate Achieved',
+            toilet: 'T: Complete assigned training | O: Take ownership of learning | I: Build professional habits | L: Balance work and personal growth | E: Ask for feedback | T: Help others learn'
+          }
+        ]
+      }
+    ];
+
+    const summaryData = [
+      { letter: 'T', title: 'Technology', items: ['iMATOMs', 'IoT', 'AI Analytics', 'WebApps'], color: '#3B82F6' },
+      { letter: 'O', title: 'Ownership/Operational', items: ['DMAIC', 'Behavioral Framework', 'Problem Solving'], color: '#8B5CF6' },
+      { letter: 'I', title: 'Integrity/Innovation', items: ['FMS Standards', 'SMART KPIs', 'Habit Creation'], color: '#EC4899' },
+      { letter: 'L', title: 'Leadership/Lifecycle', items: ['Time Management', 'Academy Skills', 'Asset Management'], color: '#F59E0B' },
+      { letter: 'E', title: 'Environmental/Empathy', items: ['ESG', 'Decarbonization', 'LATTE Protocol'], color: '#10B981' },
+      { letter: 'T', title: 'Trust/Training', items: ['Start with WHY', 'One Person Business', 'Skill Up Level'], color: '#6366F1' }
+    ];
+
+    let currentDimension = -1;
+    let config = { ...defaultConfig };
+
+    // Element SDK Integration
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (newConfig) => {
+          config = { ...defaultConfig, ...newConfig };
+          applyConfig();
+        },
+        mapToCapabilities: (cfg) => ({
+          recolorables: [
+            {
+              get: () => cfg.primary_color || defaultConfig.primary_color,
+              set: (value) => { cfg.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); }
+            },
+            {
+              get: () => cfg.secondary_color || defaultConfig.secondary_color,
+              set: (value) => { cfg.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); }
+            },
+            {
+              get: () => cfg.text_color || defaultConfig.text_color,
+              set: (value) => { cfg.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+            },
+            {
+              get: () => cfg.accent_color || defaultConfig.accent_color,
+              set: (value) => { cfg.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); }
+            },
+            {
+              get: () => cfg.highlight_color || defaultConfig.highlight_color,
+              set: (value) => { cfg.highlight_color = value; window.elementSdk.setConfig({ highlight_color: value }); }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => cfg.font_family || defaultConfig.font_family,
+            set: (value) => { cfg.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+          },
+          fontSizeable: {
+            get: () => cfg.font_size || defaultConfig.font_size,
+            set: (value) => { cfg.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
+          }
+        }),
+        mapToEditPanelValues: (cfg) => new Map([
+          ['main_title', cfg.main_title || defaultConfig.main_title],
+          ['subtitle', cfg.subtitle || defaultConfig.subtitle]
+        ])
+      });
+    }
+
+    function applyConfig() {
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const highlightColor = config.highlight_color || defaultConfig.highlight_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontSize = config.font_size || defaultConfig.font_size;
+
+      // Apply background colors
+      const heroSection = document.getElementById('hero-section');
+      heroSection.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${highlightColor} 100%)`;
+
+      const footerSection = document.getElementById('footer-section');
+      footerSection.style.background = `linear-gradient(135deg, ${highlightColor} 0%, ${primaryColor} 100%)`;
+
+      // Apply secondary color (cards background)
+      document.querySelectorAll('.glass-card').forEach(el => {
+        el.style.backgroundColor = secondaryColor;
+      });
+
+      // Apply text color
+      document.body.style.color = textColor;
+      document.querySelectorAll('#letter-meaning-title, #summary-title, #integration-title').forEach(el => {
+        el.style.color = textColor;
+      });
+
+      // Apply accent color to badges
+      document.querySelectorAll('#badge-t1, #badge-o, #badge-i, #badge-l, #badge-e, #badge-t2').forEach(el => {
+        el.style.backgroundColor = accentColor;
+      });
+
+      // Apply highlight color to active tabs
+      updateTabStyles();
+
+      // Apply fonts
+      document.body.style.fontFamily = `${fontFamily}, Prompt, sans-serif`;
+      document.querySelectorAll('h1, h2, h3').forEach(el => {
+        el.style.fontFamily = `${fontFamily}, Kanit, sans-serif`;
+      });
+
+      // Apply font sizes
+      document.getElementById('main-title').style.fontSize = `${fontSize * 2.5}px`;
+      document.getElementById('subtitle').style.fontSize = `${fontSize * 1.125}px`;
+
+      // Update text content
+      document.getElementById('main-title').textContent = config.main_title || defaultConfig.main_title;
+      document.getElementById('subtitle').textContent = config.subtitle || defaultConfig.subtitle;
+
+      // Re-render current view
+      if (currentDimension === -1) {
+        renderSummary();
+      } else {
+        renderDimensionGrid();
+      }
+    }
+
+    function updateTabStyles() {
+      const highlightColor = config.highlight_color || defaultConfig.highlight_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        const tabIndex = parseInt(tab.dataset.tab);
+        if (tabIndex === currentDimension) {
+          tab.style.backgroundColor = highlightColor;
+          tab.style.color = '#ffffff';
+        } else {
+          tab.style.backgroundColor = 'transparent';
+          tab.style.color = textColor;
+        }
+      });
+    }
+
+    function renderDimensionGrid() {
+      const grid = document.getElementById('dimension-grid');
+      const detailPanel = document.getElementById('detail-panel');
+      const summarySection = document.getElementById('summary-section');
+      
+      summarySection.classList.add('hidden');
+      grid.classList.remove('hidden');
+
+      if (currentDimension >= 0 && currentDimension < dimensions.length) {
+        const dim = dimensions[currentDimension];
+        grid.innerHTML = '';
+        detailPanel.classList.remove('hidden');
+        renderDetailPanel(dim);
+      } else if (currentDimension === -2) {
+        // Thinking Levels View
+        grid.innerHTML = '';
+        detailPanel.classList.add('hidden');
+        renderThinkingLevels();
+      } else {
+        grid.innerHTML = dimensions.map((dim, index) => `
+          <div class="dimension-card glass-card rounded-2xl p-6 cursor-pointer shadow-lg hover:shadow-2xl" 
+               onclick="showDimension(${index})"
+               style="border-left: 4px solid ${dim.color}; animation-delay: ${index * 0.1}s;">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-4xl">${dim.icon}</span>
+              <div>
+                <h3 class="font-bold text-lg" style="color: ${dim.color};">${dim.title}</h3>
+                <p class="text-sm opacity-70">${dim.subtitle}</p>
+              </div>
+            </div>
+            <p class="text-sm opacity-80 mb-4">${dim.goal}</p>
+            <div class="flex flex-wrap gap-2">
+              ${dim.items.slice(0, 3).map(item => `
+                <span class="px-2 py-1 rounded-full text-xs text-white" style="background: ${dim.color};">${item.letter}</span>
+              `).join('')}
+              <span class="px-2 py-1 rounded-full text-xs bg-gray-200">+${dim.items.length - 3} more</span>
+            </div>
+          </div>
+        `).join('');
+        detailPanel.classList.add('hidden');
+      }
+    }
+
+    function renderThinkingLevels() {
+      const grid = document.getElementById('dimension-grid');
+      const detailPanel = document.getElementById('detail-panel');
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+
+      detailPanel.classList.remove('hidden');
+      detailPanel.innerHTML = `
+        <div class="space-y-6 slide-up">
+          ${thinkingLevels.map((level, idx) => `
+            <div class="glass-card rounded-3xl overflow-hidden shadow-2xl" style="animation-delay: ${idx * 0.1}s;">
+              <div class="p-6 text-white" style="background: linear-gradient(135deg, ${level.color} 0%, ${level.color}cc 100%);">
+                <div class="flex items-center justify-between mb-2">
+                  <div class="flex items-center gap-3">
+                    <span class="text-4xl">${level.icon}</span>
+                    <div>
+                      <h3 class="text-2xl font-bold">${level.level}</h3>
+                      <p class="text-sm opacity-90">${level.focus}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="p-6">
+                <div class="grid md:grid-cols-2 gap-4">
+                  ${level.objectives.map((obj, objIdx) => `
+                    <div class="p-4 rounded-xl border-l-4" style="border-color: ${level.color}; background: linear-gradient(135deg, ${level.color}08 0%, ${level.color}04 100%);">
+                      <div class="flex items-center gap-2 mb-2">
+                        <span class="font-bold text-sm" style="color: ${level.color};">📊 ${obj.perspective}</span>
+                      </div>
+                      <p class="text-xs opacity-70 mb-3">KPI: ${obj.kpi}</p>
+                      <div class="text-xs leading-relaxed space-y-1">
+                        ${obj.toilet.split(' | ').map(part => `<div class="flex gap-2">
+                          <span class="font-semibold" style="color: ${level.color};">${part.split(':')[0]}</span>
+                          <span>${part.split(':')[1]}</span>
+                        </div>`).join('')}
+                      </div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderDetailPanel(dim) {
+      const detailPanel = document.getElementById('detail-panel');
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      
+      detailPanel.innerHTML = `
+        <div class="glass-card rounded-3xl overflow-hidden shadow-2xl slide-up">
+          <div class="p-6 text-white" style="background: linear-gradient(135deg, ${dim.color} 0%, ${dim.color}cc 100%);">
+            <div class="flex items-center gap-4">
+              <span class="text-5xl">${dim.icon}</span>
+              <div>
+                <h2 class="text-2xl font-bold" style="font-family: 'Kanit', sans-serif;">มิติที่ ${dim.id + 1}: ${dim.title}</h2>
+                <p class="opacity-90">${dim.subtitle}</p>
+              </div>
+            </div>
+            <div class="mt-4 p-4 bg-white/20 rounded-xl">
+              <p class="font-medium">🎯 เป้าหมาย: ${dim.goal}</p>
+            </div>
+          </div>
+          
+          <div class="p-6">
+            <div class="grid gap-4">
+              ${dim.items.map((item, idx) => `
+                <div class="flex gap-4 p-4 rounded-xl transition-all hover:shadow-md slide-up" 
+                     style="animation-delay: ${idx * 0.1}s; background: linear-gradient(135deg, ${dim.color}10 0%, ${dim.color}05 100%);">
+                  <div class="letter-badge w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl shrink-0"
+                       style="background: ${dim.color};">
+                    ${item.letter}
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-lg" style="color: ${dim.color};">${item.title}</h4>
+                    <p class="text-sm opacity-80 mt-1">${item.desc}</p>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderSummary() {
+      const grid = document.getElementById('dimension-grid');
+      const detailPanel = document.getElementById('detail-panel');
+      const summarySection = document.getElementById('summary-section');
+      const summaryGrid = document.getElementById('summary-grid');
+      
+      grid.classList.add('hidden');
+      detailPanel.classList.add('hidden');
+      summarySection.classList.remove('hidden');
+
+      summaryGrid.innerHTML = summaryData.map((item, idx) => `
+        <div class="glass-card rounded-2xl p-6 shadow-lg slide-up" style="animation-delay: ${idx * 0.1}s;">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-2xl"
+                 style="background: ${item.color};">
+              ${item.letter}
+            </div>
+            <h3 class="font-bold" style="color: ${item.color};">${item.title}</h3>
+          </div>
+          <ul class="space-y-2">
+            ${item.items.map(i => `
+              <li class="flex items-center gap-2 text-sm">
+                <span class="w-2 h-2 rounded-full" style="background: ${item.color};"></span>
+                ${i}
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    function showDimension(index) {
+      currentDimension = index;
+      updateTabStyles();
+      
+      if (index === -1) {
+        renderSummary();
+      } else {
+        renderDimensionGrid();
+      }
+
+      // Scroll to content
+      document.getElementById('dimension-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Initialize
+    applyConfig();
+    showDimension(-1);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d69801b263fa07e',t:'MTc3MjU0OTkxOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
